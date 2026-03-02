@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas Condicionais em C</title>
+    <STYle>
+        header{
+            background-color: beige;
+            }
+            
+       body{
+        background-color: bisque;
+       }
+    </STYle>
+</head>
+
+<body>
+    <header>
+        <h1><center>TRABALHO FRONT END</center></h1>
+        
+    </header>
+    <h1>Estruturas Condicionais em C</h1>
+    <p>
+        Em C, as estruturas condicionais permitem que o programa tome decisões com base em condições lógicas.
+        Existem três formas principais: <strong>simples</strong>, <strong>composta (dupla)</strong> e <strong>aninhada</strong>.
+    </p>
+
+    <h2>1. Estrutura Condicional Simples</h2>
+    <p>
+        A condicional simples usa apenas o <code>if</code>.  
+        Se a condição for verdadeira, o bloco de código é executado.  
+        Se for falsa, nada acontece.
+    </p>
+    <pre>
+#include <stdio.h>
+
+int main() {
+    int idade = 20;
+
+    if (idade >= 18) {
+        printf("Você é maior de idade\n");
+    }
+
+    return 0;
+}
+    </pre>
+
+    <h2>2. Estrutura Condicional Composta (Dupla)</h2>
+    <p>
+        A condicional composta usa <code>if...else</code>.  
+        Se a condição for verdadeira, executa um bloco.  
+        Se for falsa, executa outro.
+    </p>
+    <pre>
+#include <stdio.h>
+
+int main() {
+    int idade = 16;
+
+    if (idade >= 18) {
+        printf("Você é maior de idade\n");
+    } else {
+        printf("Você é menor de idade\n");
+    }
+
+    return 0;
+}
+    </pre>
+
+    <h2>3. Estrutura Condicional Aninhada</h2>
+    <p>
+        A condicional aninhada usa um <code>if</code> dentro de outro <code>if</code>.  
+        Sendo melhor para decisões mais longas e complexas tirando a necessidade de iniciar outros <code>if</code>
+    </p>
+    <pre>
+#include <stdio.h>
+
+int main() {
+    int idade = 65;
+
+    if (idade >= 18) {
+        if (idade >= 60) {
+            printf("Você é idoso\n");
+        } else {
+            printf("Você é adulto\n");
+        }
+    } else {
+        printf("Você é menor de idade\n");
+    }
+
+    return 0;
+}
+    </pre>
+
+     <h2>4. Estrutura Condicional switch case</h2>
+
+     <p>
+        O switch case funciona comparando uma variavel com diversos valores possiveis e se tiver correspondencia ele executa o bloco de codigo.
+     </p>
+
+     <pre>
+        int numero = 2;
+
+switch (numero) {
+    case 1:
+        printf("Número é 1");
+        break;
+    case 2:
+        printf("Número é 2");
+        break;
+    default:
+        printf("Outro número");
+}
+
+     </pre>
+    <hr>
+
+    <h2>Formulário de Avaliação</h2>
+    <form>
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br><br>
+
+        <label for="utilidade">O conteúdo foi útil?</label><br>
+        <select id="utilidade" name="utilidade">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select><br><br>
+
+        <label for="comentarios">Comentários:</label><br>
+        <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Enviar Avaliação">
+    </form>
+</body>
+<!--⠀⠀⠀⠀⠀⠀⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⡟⣻⠀⠀⢀⣀⣀⣀⣀⣠⣴⠆⠀⠀⠀⠀
+⠀⠀⠀⣶⠤⣀⣀⡴⠋⠀⠋⠉⠉⠁⠀⠈⠀⠶⠯⣅⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⣳⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣩⠶⠞⠃⠀
+⠀⠀⠀⢀⡽⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠘⣆⠀⠀⠀⠀
+⠲⠶⣚⡍⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠀⢹⣦⠀⢧⠀⠈⠳⣄⠀⠀
+⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⣧⠀⠀⣿⡴⠋⠉⢛⣾⣆⢸⡳⢬⣷⠦
+⢠⡾⠶⣤⣀⠀⣀⣲⠀⢀⣿⢰⢀⣿⠀⠀⣰⣿⣿⢿⠯⣷⣄⡀⠀
+⠀⠀⢰⣿⣿⣿⣿⠿⣧⢸⣧⣿⡼⠙⣧⣾⣿⣿⡟⠘⣦⠀⠀⠀⠀
+⠀⠀⡾⠙⢸⣿⣧⠀⠈⠛⠇⠈⠀⠀⠀⠉⠉⠁⠀⠀⢈⡇⠀⠀⠀
+⠀⠀⠁⠀⢸⡏⠿⠷⣶⡦⠀⠀⠀⠀⠀⠘⠦⣄⣀⡴⠞⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣰⣷⣷⣶⣶⣶⣶⣶⣶⣾⣏⠉⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠽⣿⣿⣿⣿⣿⣿⣿⣿⠛⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀-->
+</html>
