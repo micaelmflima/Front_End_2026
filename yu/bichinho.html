@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Meu Pet Virtual</title>
+
+<style>
+
+body{
+    background-image: url("bg.png");
+    background-size: cover;
+    text-align: center;
+    font-family: Arial;
+    margin: 0;
+}
+
+/* BOTÃO FOTO */
+#btnFoto{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* PET */
+#pet{
+    margin-top: 120px;
+    width: 250px;
+}
+
+#btn{
+    margin-top: 40px;
+    width: 120px;
+    cursor: pointer;
+}
+
+#status{
+    font-size: 24px;
+    margin-top: 20px;
+    color: white;
+}
+
+#tempo{
+    font-size: 20px;
+    color: white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button id="btnFoto">estou invisivel</button>
+
+<h1 style="color:white;">🐾 Meu Pet Virtual</h1>
+
+<img id="pet" src="b_n.png">
+
+<br>
+
+<img id="btn" src="btn.png">
+
+<div id="status">Status: Normal</div>
+<div id="tempo">Tempo: 0</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
