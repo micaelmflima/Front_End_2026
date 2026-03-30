@@ -1,4 +1,3 @@
-// ── Referências ──────────────────────────────────────────────
 const pet              = document.getElementById("pet");
 const botao            = document.getElementById("btn");
 const status           = document.getElementById("status");
@@ -10,7 +9,7 @@ const fomePreenchimento= document.getElementById("fomePreenchimento");
 const canvas           = document.getElementById("starCanvas");
 const ctx              = canvas.getContext("2d");
 
-// ── Estados do pet ───────────────────────────────────────────
+
 const estados = {
   normal:    "b_n.png",
   bravo:     "b_p.png",
@@ -19,13 +18,12 @@ const estados = {
   alimentado:"b_a.png"
 };
 
-// ── Estado do jogo ───────────────────────────────────────────
+
 let tempo  = 0;
 let vivo   = true;
-let fome   = 100;   // 0 = morrendo, 100 = cheio
+let fome   = 100;   
 let ehDia  = false;
 
-// ── Estrelas ─────────────────────────────────────────────────
 const QTDE_ESTRELAS = 160;
 let estrelas = [];
 
@@ -61,7 +59,7 @@ function animarEstrelas() {
     ctx.globalAlpha = s.brilho;
     ctx.fill();
 
-    // Cruz de luz nas estrelas maiores
+
     if (s.r > 1.5) {
       ctx.globalAlpha = s.brilho * 0.4;
       ctx.strokeStyle = s.cor;
@@ -88,7 +86,7 @@ redimensionarCanvas();
 criarEstrelas();
 animarEstrelas();
 
-// ── Barra de fome ─────────────────────────────────────────────
+
 function atualizarFome() {
   fomePreenchimento.style.width = fome + "%";
   if (fome > 60) {
@@ -102,7 +100,7 @@ function atualizarFome() {
 
 atualizarFome();
 
-// ── Partículas de comida ──────────────────────────────────────
+
 function spawnParticulas() {
   const emojis = ["🍖","🍗","🦴","⭐","✨","💫"];
   const rect   = pet.getBoundingClientRect();
@@ -120,13 +118,13 @@ function spawnParticulas() {
   }
 }
 
-// ── Timer principal ───────────────────────────────────────────
+
 function iniciarTempo() {
   setInterval(() => {
     if (!vivo) return;
 
     tempo++;
-    fome = Math.max(0, fome - (100 / 60)); // chega a 0 em 60 segundos
+    fome = Math.max(0, fome - (100 / 60)); 
     atualizarFome();
 
     tempoTela.innerHTML = "Tempo: " + tempo + "s";
@@ -148,10 +146,8 @@ function iniciarTempo() {
 
 iniciarTempo();
 
-// ── Alimentar ─────────────────────────────────────────────────
 botao.addEventListener("click", () => {
   if (!vivo) {
-    // Pequena animação de tristeza no botão
     botao.style.filter = "grayscale(1)";
     setTimeout(() => botao.style.filter = "", 600);
     alert("Seu pet morreu 😢\nRecarregue a página para recomeçar!");
@@ -178,7 +174,7 @@ botao.addEventListener("click", () => {
   }, 4000);
 });
 
-// ── Toggle Dia / Noite ────────────────────────────────────────
+
 function aplicarTema(dia) {
   ehDia = dia;
   if (dia) {
@@ -194,10 +190,10 @@ toggleDiaNite.addEventListener("change", () => {
   aplicarTema(toggleDiaNite.checked);
 });
 
-// Começa no modo noite
+
 aplicarTema(false);
 
-// ── Botão Foto ────────────────────────────────────────────────
+
 btnFoto.addEventListener("click", () => {
   window.open("foto.png", "_blank");
 });

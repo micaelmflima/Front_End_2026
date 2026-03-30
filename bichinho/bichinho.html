@@ -8,10 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    /* ── Importação de fonte fofa ── */
+    
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap');
 
-    /* ── Variáveis de tema ── */
     :root {
       --sky-day:   linear-gradient(180deg, #87CEEB 0%, #c9e8f5 60%, #fde8b0 100%);
       --sky-night: linear-gradient(180deg, #0b0c2a 0%, #1a1a4e 60%, #2d1b5e 100%);
@@ -38,7 +37,7 @@
       background: var(--sky-day);
     }
 
-    /* ── Título ── */
+  
     h1 {
       font-family: 'Fredoka One', cursive;
       font-size: 2.4rem;
@@ -50,7 +49,7 @@
     }
     body.dia h1 { color: var(--text-day); text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 
-    /* ── Canvas de estrelas ── */
+   
     #starCanvas {
       position: fixed;
       top: 0; left: 0;
@@ -61,7 +60,7 @@
     }
     body.dia #starCanvas { opacity: 0; }
 
-    /* ── Lua / Sol ── */
+    
     #astro {
       position: fixed;
       top: 30px;
@@ -72,19 +71,19 @@
       transition: background var(--transition), box-shadow var(--transition), left var(--transition);
       z-index: 1;
     }
-    /* Lua */
+  
     #astro {
       background: #f0e68c;
       box-shadow: 0 0 24px 8px rgba(240,230,140,0.5), inset -12px -4px 0 #c8b800;
     }
-    /* Sol */
+  
     body.dia #astro {
       background: #FFD700;
       box-shadow: 0 0 40px 16px rgba(255,215,0,0.6), 0 0 80px 30px rgba(255,200,0,0.3);
       left: calc(100vw - 110px);
     }
 
-    /* ── Nuvens (só no dia) ── */
+    
     .nuvem {
       position: fixed;
       top: 80px;
@@ -118,7 +117,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* ── Toggle dia/noite ── */
+
     #toggleContainer {
       position: fixed;
       top: 20px;
@@ -138,7 +137,7 @@
     }
     body.dia #toggleLabel { color: var(--text-day); }
 
-    /* ── Botão Foto ── */
+    
     #btnFoto {
       position: fixed;
       top: 60px;
@@ -148,7 +147,7 @@
       font-size: 0.9rem;
     }
 
-    /* ── Pet ── */
+
     #petContainer {
       position: relative;
       z-index: 2;
@@ -162,7 +161,7 @@
     }
     #pet:hover { transform: scale(1.03); }
 
-    /* ── Chão ── */
+
     #chao {
       position: fixed;
       bottom: 0; left: 0;
@@ -175,7 +174,7 @@
     }
     body.dia #chao { background: linear-gradient(180deg, #6abf5e 0%, #4a9e3f 100%); }
 
-    /* ── Botão alimentar ── */
+   
     #btn {
       width: 120px;
       cursor: pointer;
@@ -186,7 +185,7 @@
     #btn:hover { transform: scale(1.1) rotate(-3deg); }
     #btn:active { transform: scale(0.95); }
 
-    /* ── Status e Tempo ── */
+   
     #status, #tempo {
       position: relative;
       z-index: 2;
@@ -200,7 +199,7 @@
     #status { font-size: 1.4rem; margin-top: 12px; }
     #tempo  { font-size: 1.1rem; margin-top: 6px; margin-bottom: 60px; }
 
-    /* ── Barra de fome ── */
+   
     #fomeContainer {
       position: relative;
       z-index: 2;
@@ -231,7 +230,7 @@
       transition: width 0.5s ease, background 0.5s;
     }
 
-    /* ── Partículas de comida ── */
+    
     .particula {
       position: fixed;
       font-size: 1.4rem;
@@ -244,7 +243,7 @@
       100% { transform: translateY(80px) scale(0.5); opacity: 0; }
     }
 
-    /* ── Piscada do pet ── */
+  
     @keyframes piscada {
       0%, 90%, 100% { opacity: 1; }
       95% { opacity: 0.1; }
@@ -255,26 +254,25 @@
 
 <body>
 
-  <!-- Canvas de estrelas -->
+
   <canvas id="starCanvas"></canvas>
 
-  <!-- Astro (Lua/Sol) -->
+  
   <div id="astro"></div>
 
-  <!-- Nuvens -->
+ 
   <div class="nuvem" id="nuvem1"></div>
   <div class="nuvem" id="nuvem2"></div>
 
-  <!-- Chão -->
   <div id="chao"></div>
 
-  <!-- Toggle Dia/Noite (DaisyUI) -->
+
   <div id="toggleContainer">
     <span id="toggleLabel">🌙 Noite</span>
     <input type="checkbox" id="toggleDiaNite" class="toggle toggle-warning" />
   </div>
 
-  <!-- Botão Foto -->
+  
   <button id="btnFoto" class="btn btn-sm btn-outline btn-accent">📷 Foto</button>
 
   <h1>🐾 Meu Pet Virtual</h1>
@@ -287,7 +285,7 @@
 
   <img id="btn" src="btn.png" title="Alimentar!">
 
-  <!-- Barra de fome -->
+
   <div id="fomeContainer">
     <div id="fomeLabel">🍖 Fome</div>
     <div id="fomeBarra">
