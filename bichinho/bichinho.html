@@ -1,73 +1,303 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="night">
 
 <head>
-<meta charset="UTF-8">
-<title>Meu Pet Virtual</title>
+  <meta charset="UTF-8">
+  <title>Meu Pet Virtual</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
+  <style>
+    /* ── Importação de fonte fofa ── */
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap');
 
-body{
-    background-image: url("bg.png");
-    background-size: cover;
-    text-align: center;
-    font-family: Arial;
-    margin: 0;
-}
+    /* ── Variáveis de tema ── */
+    :root {
+      --sky-day:   linear-gradient(180deg, #87CEEB 0%, #c9e8f5 60%, #fde8b0 100%);
+      --sky-night: linear-gradient(180deg, #0b0c2a 0%, #1a1a4e 60%, #2d1b5e 100%);
+      --text-day:  #2c3e50;
+      --text-night:#e0e8ff;
+      --transition: 1.2s ease;
+    }
 
-/* BOTÃO FOTO */
-#btnFoto{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
+    * { box-sizing: border-box; }
 
-/* PET */
-#pet{
-    margin-top: 120px;
-    width: 250px;
-}
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--sky-night);
+      transition: background var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-#btn{
-    margin-top: 40px;
-    width: 120px;
-    cursor: pointer;
-}
+    body.dia {
+      background: var(--sky-day);
+    }
 
-#status{
-    font-size: 24px;
-    margin-top: 20px;
-    color: white;
-}
+    /* ── Título ── */
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      margin-top: 100px;
+      color: var(--text-night);
+      transition: color var(--transition);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      letter-spacing: 1px;
+    }
+    body.dia h1 { color: var(--text-day); text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 
-#tempo{
-    font-size: 20px;
-    color: white;
-}
+    /* ── Canvas de estrelas ── */
+    #starCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity var(--transition);
+    }
+    body.dia #starCanvas { opacity: 0; }
 
-</style>
+    /* ── Lua / Sol ── */
+    #astro {
+      position: fixed;
+      top: 30px;
+      left: 50px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      transition: background var(--transition), box-shadow var(--transition), left var(--transition);
+      z-index: 1;
+    }
+    /* Lua */
+    #astro {
+      background: #f0e68c;
+      box-shadow: 0 0 24px 8px rgba(240,230,140,0.5), inset -12px -4px 0 #c8b800;
+    }
+    /* Sol */
+    body.dia #astro {
+      background: #FFD700;
+      box-shadow: 0 0 40px 16px rgba(255,215,0,0.6), 0 0 80px 30px rgba(255,200,0,0.3);
+      left: calc(100vw - 110px);
+    }
 
+    /* ── Nuvens (só no dia) ── */
+    .nuvem {
+      position: fixed;
+      top: 80px;
+      border-radius: 50px;
+      background: white;
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: 1;
+      pointer-events: none;
+    }
+    body.dia .nuvem { opacity: 0.85; }
+
+    .nuvem::before, .nuvem::after {
+      content: '';
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+    }
+
+    #nuvem1 { width: 120px; height: 40px; left: 15%; animation: flutuaNuvem 18s linear infinite; }
+    #nuvem1::before { width: 60px; height: 55px; top: -28px; left: 15px; }
+    #nuvem1::after  { width: 45px; height: 45px; top: -20px; left: 50px; }
+
+    #nuvem2 { width: 90px; height: 30px; left: 55%; top: 110px; animation: flutuaNuvem 25s linear infinite reverse; }
+    #nuvem2::before { width: 45px; height: 40px; top: -20px; left: 10px; }
+    #nuvem2::after  { width: 35px; height: 35px; top: -14px; left: 40px; }
+
+    @keyframes flutuaNuvem {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(40px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ── Toggle dia/noite ── */
+    #toggleContainer {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #toggleLabel {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      color: var(--text-night);
+      transition: color var(--transition);
+      user-select: none;
+    }
+    body.dia #toggleLabel { color: var(--text-day); }
+
+    /* ── Botão Foto ── */
+    #btnFoto {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      z-index: 10;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+    }
+
+    /* ── Pet ── */
+    #petContainer {
+      position: relative;
+      z-index: 2;
+      margin-top: 20px;
+    }
+
+    #pet {
+      width: 250px;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+      transition: filter var(--transition), transform 0.2s;
+    }
+    #pet:hover { transform: scale(1.03); }
+
+    /* ── Chão ── */
+    #chao {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 90px;
+      z-index: 1;
+      background: linear-gradient(180deg, #4a7c45 0%, #2d5a27 100%);
+      transition: background var(--transition);
+      border-radius: 60% 60% 0 0 / 20px 20px 0 0;
+    }
+    body.dia #chao { background: linear-gradient(180deg, #6abf5e 0%, #4a9e3f 100%); }
+
+    /* ── Botão alimentar ── */
+    #btn {
+      width: 120px;
+      cursor: pointer;
+      transition: transform 0.15s;
+      position: relative;
+      z-index: 2;
+    }
+    #btn:hover { transform: scale(1.1) rotate(-3deg); }
+    #btn:active { transform: scale(0.95); }
+
+    /* ── Status e Tempo ── */
+    #status, #tempo {
+      position: relative;
+      z-index: 2;
+      font-family: 'Fredoka One', cursive;
+      color: var(--text-night);
+      transition: color var(--transition);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    body.dia #status, body.dia #tempo { color: var(--text-day); text-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+
+    #status { font-size: 1.4rem; margin-top: 12px; }
+    #tempo  { font-size: 1.1rem; margin-top: 6px; margin-bottom: 60px; }
+
+    /* ── Barra de fome ── */
+    #fomeContainer {
+      position: relative;
+      z-index: 2;
+      width: 220px;
+      margin: 8px auto 0;
+    }
+    #fomeLabel {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+      color: var(--text-night);
+      transition: color var(--transition);
+      margin-bottom: 4px;
+    }
+    body.dia #fomeLabel { color: var(--text-day); }
+
+    #fomeBarra {
+      height: 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    #fomePreenchimento {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77);
+      border-radius: 20px;
+      transition: width 0.5s ease, background 0.5s;
+    }
+
+    /* ── Partículas de comida ── */
+    .particula {
+      position: fixed;
+      font-size: 1.4rem;
+      pointer-events: none;
+      z-index: 99;
+      animation: cair 1s ease-in forwards;
+    }
+    @keyframes cair {
+      0%   { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(80px) scale(0.5); opacity: 0; }
+    }
+
+    /* ── Piscada do pet ── */
+    @keyframes piscada {
+      0%, 90%, 100% { opacity: 1; }
+      95% { opacity: 0.1; }
+    }
+    #pet.piscando { animation: piscada 4s infinite; }
+  </style>
 </head>
 
 <body>
 
-<button id="btnFoto">estou invisivel</button>
+  <!-- Canvas de estrelas -->
+  <canvas id="starCanvas"></canvas>
 
-<h1 style="color:white;">🐾 Meu Pet Virtual</h1>
+  <!-- Astro (Lua/Sol) -->
+  <div id="astro"></div>
 
-<img id="pet" src="b_n.png">
+  <!-- Nuvens -->
+  <div class="nuvem" id="nuvem1"></div>
+  <div class="nuvem" id="nuvem2"></div>
 
-<br>
+  <!-- Chão -->
+  <div id="chao"></div>
 
-<img id="btn" src="btn.png">
+  <!-- Toggle Dia/Noite (DaisyUI) -->
+  <div id="toggleContainer">
+    <span id="toggleLabel">🌙 Noite</span>
+    <input type="checkbox" id="toggleDiaNite" class="toggle toggle-warning" />
+  </div>
 
-<div id="status">Status: Normal</div>
-<div id="tempo">Tempo: 0</div>
+  <!-- Botão Foto -->
+  <button id="btnFoto" class="btn btn-sm btn-outline btn-accent">📷 Foto</button>
 
-<script src="script.js"></script>
+  <h1>🐾 Meu Pet Virtual</h1>
 
+  <div id="petContainer">
+    <img id="pet" src="b_n.png" class="piscando">
+  </div>
+
+  <br>
+
+  <img id="btn" src="btn.png" title="Alimentar!">
+
+  <!-- Barra de fome -->
+  <div id="fomeContainer">
+    <div id="fomeLabel">🍖 Fome</div>
+    <div id="fomeBarra">
+      <div id="fomePreenchimento"></div>
+    </div>
+  </div>
+
+  <div id="status">Status: Normal</div>
+  <div id="tempo">Tempo: 0s</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
