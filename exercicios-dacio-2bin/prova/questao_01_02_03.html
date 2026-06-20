@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo FIFA 2026</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+    <header>
+        <h1>🏆 Copa do Mundo FIFA 2026</h1>
+        <p>A maior edição da história do futebol mundial</p>
+    </header>
+
+    <!-- QUESTÃO 01: nav com links para as seções -->
+    <nav>
+        <a href="#organizacao">🌍 Organização e Sedes</a>
+        <a href="#formato">⚽ Novo Formato</a>
+        <a href="#expectativas">🏆 Expectativas e Impacto</a>
+    </nav>
+
+    <main>
+
+        <!-- QUESTÃO 01: section com id para navegação -->
+        <section id="organizacao">
+            <h2>🌍 Organização e Sedes</h2>
+            <p>
+                A Copa do Mundo FIFA de 2026 será a primeira edição realizada em três países:
+                <strong>Estados Unidos</strong>, <strong>Canadá</strong> e <strong>México</strong>.
+                Essa será também a maior Copa da história em número de cidades-sede, com partidas
+                distribuídas por diversas regiões da América do Norte, ampliando o alcance global
+                do torneio.
+            </p>
+            <a href="#topo">↑ Voltar ao topo</a>
+        </section>
+
+        <section id="formato">
+            <h2>⚽ Novo Formato</h2>
+            <p>
+                O torneio contará com <strong>48 seleções</strong>, em vez das tradicionais 32.
+                As equipes serão divididas em grupos, aumentando o número total de jogos e dando
+                mais oportunidades para países de diferentes continentes participarem. Essa mudança
+                foi promovida pela FIFA para tornar a competição mais inclusiva e competitiva.
+            </p>
+            <a href="#topo">↑ Voltar ao topo</a>
+        </section>
+
+        <section id="expectativas">
+            <h2>🏆 Expectativas e Impacto</h2>
+            <p>
+                A edição de 2026 promete ser uma das mais assistidas da história, com grande impacto
+                econômico e cultural nos países-sede. Além disso, seleções tradicionais e emergentes
+                devem protagonizar jogos de alto nível, aumentando ainda mais o interesse global pelo
+                futebol e fortalecendo o esporte em novas regiões.
+            </p>
+            <a href="#topo">↑ Voltar ao topo</a>
+        </section>
+
+        <!-- QUESTÃO 03: Botão que insere a imagem da tabela dinamicamente -->
+        <section id="tabela-jogos">
+            <h2>📅 Tabela de Jogos</h2>
+            <p>Clique no botão abaixo para visualizar a tabela oficial de jogos da Copa do Mundo 2026.</p>
+            <button onclick="mostrarTabela()">Mostrar Tabela de Jogos</button>
+            <div id="container-tabela"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 - Copa do Mundo FIFA | Desenvolvido para fins educacionais</p>
+    </footer>
+
+    <!-- QUESTÃO 03: Script JavaScript -->
+    <script>
+        function mostrarTabela() {
+            const container = document.getElementById('container-tabela');
+
+            // Evita duplicar a imagem se já foi inserida
+            if (container.querySelector('img')) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const img = document.createElement('img');
+            img.src = 'img/Tabela_Jogos.png';
+            img.alt = 'Tabela Oficial de Jogos - Copa do Mundo FIFA 2026';
+            img.style.width = '100%';
+            img.style.borderRadius = '8px';
+            img.style.marginTop = '15px';
+
+            container.appendChild(img);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+/* =============================================
+   QUESTÃO 02 - Folha de Estilos CSS
+   Copa do Mundo FIFA 2026
+   ============================================= */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body com cor de fundo suave */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eaf4fb;   /* cor de fundo suave - azul claro */
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #003580, #005baa, #009c3b);
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.05em;
+    margin-top: 8px;
+    color: #c9e4ff;
+}
+
+/* Navegação */
+nav {
+    background-color: #003580;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 8px 18px;
+    border-radius: 20px;            /* border-radius aplicado */
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #009c3b;
+}
+
+/* Área principal */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* =============================================
+   CLASSE DE ESTILIZAÇÃO DAS SEÇÕES (Questão 02)
+   ============================================= */
+section {
+    background-color: #ffffff;     /* cor de fundo suave para cada seção */
+    border-radius: 12px;           /* border-radius nas seções */
+    padding: 30px 35px;            /* itens espaçados */
+    box-shadow: 0 4px 16px rgba(0, 53, 128, 0.1);
+    border-left: 5px solid #005baa;
+}
+
+section#formato {
+    border-left-color: #009c3b;    /* verde Brasil para variar */
+    background-color: #f5fff8;
+}
+
+section#expectativas {
+    border-left-color: #f5a623;    /* dourado Copa */
+    background-color: #fffdf2;
+}
+
+section#tabela-jogos {
+    border-left-color: #e63946;
+    background-color: #fff5f5;
+}
+
+/* Títulos das seções - tamanho de fonte destacado */
+section h2 {
+    font-size: 1.5em;              /* alteração de tamanho de fonte para destacar títulos */
+    font-weight: 700;              /* font-weight para negrito */
+    color: #003580;
+    margin-bottom: 16px;
+    text-align: left;              /* text-align */
+}
+
+section#formato h2  { color: #007a2f; }
+section#expectativas h2 { color: #b07a00; }
+section#tabela-jogos h2 { color: #c1121f; }
+
+/* Parágrafos */
+section p {
+    font-size: 1em;                /* font-size padrão para texto */
+    color: #333;
+    margin-bottom: 12px;
+}
+
+/* Links internos */
+section a {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #005baa;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background-color: #e0edff;
+    transition: background-color 0.2s;
+}
+
+section a:hover {
+    background-color: #c0d8ff;
+}
+
+/* Botão da Questão 03 */
+button {
+    background-color: #005baa;     /* background-color no botão */
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1em;                /* font-size no botão */
+    font-weight: 600;
+    border-radius: 8px;            /* border-radius no botão */
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003d80;
+}
+
+/* Container da tabela de jogos */
+#container-tabela {
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;            /* text-align no rodapé */
+    background-color: #1a1a2e;
+    color: #aaa;
+    padding: 20px;
+    font-size: 0.85em;
+    margin-top: 40px;
+}
